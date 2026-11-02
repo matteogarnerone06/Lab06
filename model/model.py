@@ -36,6 +36,18 @@ class DepositoStrumenti:
             :return: una lista con tutti gli strumenti presenti oppure None
         """
         # TODO
+        database = get_connection()
+        cursor = database.cursor()
+        lista_strumento = []
+        query = """SELECT * FROM strumento"""
+        try:
+            cursor.execute(query)
+            for row in cursor:
+                s = Strumento(row[0], row[1],row[2],row[3],row[4],row[5])
+                lista_strumento.append(s)
+            return lista_strumento
+        except Exception as e:
+            print("Errore durante la lettura del Database: ",e)
 
     def cerca_strumenti_per_tipo(self, tipo) -> list[Strumento] | None:
         """
@@ -44,3 +56,12 @@ class DepositoStrumenti:
             :return: una lista con tutti gli strumenti del tipo indicato oppure None
         """
         # TODO
+        database = get_connection()
+        cursor = database.cursor()
+        lista_strumento = []
+        query = "SELECT * FROM strumento WHERE tipo = %s"
+        cursor.execute(query,(tipo,))
+        for row in cursor:
+            s = Strumento(row[0], row[1], row[2], row[3], row[4], row[5])
+            lista_strumento.append(s)
+        return lista_strumento

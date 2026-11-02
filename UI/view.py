@@ -1,4 +1,6 @@
 import flet as ft
+from flet import TextField
+
 from UI.alert import AlertManager
 
 '''
@@ -64,7 +66,8 @@ class View:
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
         # TODO
-
+        mostra = ft.Button("Mostra",on_click=self.controller.mostra)
+        bottone_cerca = ft.Button("Cerca",on_click=self.controller.cerca_tipo)
         # --- LAYOUT ---
         self.page.add(
             self.toggle_cambia_tema,
@@ -72,6 +75,7 @@ class View:
             # Sezione 1
             self.txt_titolo,
             self.txt_responsabile,
+
             ft.Divider(),
 
             # Sezione 2
@@ -83,9 +87,18 @@ class View:
 
             # Sezione 3
             # TODO
+            ft.Row(spacing = 20,controls = [ft.Text("Strumento",size = 20),mostra],alignment=ft.MainAxisAlignment.START),
+            self.lista_strumenti,
+            ft.Divider(),
+
+
+
 
             # Sezione 4
             # TODO
+            ft.Text("Cerca strumenti per tipo",size = 20),
+            ft.Row(spacing=20,controls = [self.input_tipo_strumento,bottone_cerca],alignment=ft.MainAxisAlignment.CENTER),
+            self.lista_strumenti_ricerca
         )
 
     def cambia_tema(self, e):
