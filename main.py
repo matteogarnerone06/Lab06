@@ -9,6 +9,7 @@ DA ESEGUIRE
 '''
 
 def main(page: ft.Page):
+    print("ciao")
     my_model = DepositoStrumenti("Deposito Strumenti Musicali", "Alessandro Visconti")
     my_view = View(page)
     my_controller = Controller(my_view, my_model)

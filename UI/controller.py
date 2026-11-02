@@ -36,7 +36,6 @@ class Controller:
 
     def cerca_tipo(self):
         tipo = self._view.input_tipo_strumento.value
-        self._view.input_tipo_strumento.value()
         lista_trovati = self._model.cerca_strumenti_per_tipo(tipo)
         self._view.lista_strumenti_ricerca.controls.clear()
         if lista_trovati:
